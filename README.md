@@ -226,17 +226,16 @@ gf = Geofurlong()
 bml2 = gf.elr("BML2")
 
 bml2.reported_len_km
-93.6875952
+# 93.6875952
 
 bml2.measured_len_km
-93.6150669947
+# 93.6150669947
 
 bml2.remarks
-'Short mile noted in records'
-
+# 'Short mile noted in records'
 
 gf.elr("EGM1").remarks
-'Known anomalies with data source accuracy'
+# 'Known anomalies with data source accuracy'
 ```
 
 ### To Do
