@@ -104,6 +104,7 @@ The example below shows the `traverse` method being applied to ELR SUB2 (Edinbur
 ```python
 from geofurlong import Geofurlong
 from shapely.geometry import MultiPoint
+from shapely import to_geojson
 
 gf = Geofurlong()
 
