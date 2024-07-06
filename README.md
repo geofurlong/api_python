@@ -250,13 +250,13 @@ gf.elr("EGM1").remarks
 
 ### Performance
 
-This library can compute the co-ordinates of railway points at many thousand iterations per second. It utilises robust high-performance libraries which are written in C, thus the normal performance overheads associated with the dynamic typing nature of Python are reduced. Some basic performance benchmarks are recorded in this [example](example_98_performance.py).
+This library can compute the co-ordinates of railway points at many thousand iterations per second. It utilises robust high-performance libraries which are written in C, thus the normal performance overheads associated with the dynamic typing nature of Python are reduced. Some basic performance benchmarks are recorded in this [example](lib/example_98_performance.py).
 
 For higher-performing geocoding requirements, see the [GeoFurlong builder](https://github.com/geofurlong/builder) repository on GitHub which is written in Go.
 
 ### Testing
 
-A set of unit [tests](test_geofurlong.py) are included in this repository which require the installation of `pytest` to run - see [requirements-dev](requirements-dev.txt).
+A set of unit [tests](lib/test_geofurlong.py) are included in this repository which require the installation of `pytest` to run - see [requirements-dev](lib/requirements-dev.txt).
 
 ### Credits
 
