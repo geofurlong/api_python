@@ -1,0 +1,7 @@
+lib/__pycache__/
+lib/.pytest_cache/
+lib/output/
+lib/superseded/
+lib/wolverhampton*.html
+*.sqlite
+pyproject.toml
