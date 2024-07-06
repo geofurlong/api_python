@@ -28,7 +28,7 @@ This example assumes `geofurlong.py` is in the same directory as this script. If
 
 ## Point on an ELR at a mileage
 
-To establish the position of the railway on an  at a specific mileage on an ELR, use the `at` method. This method takes an `elr` and `total_yards` values as parameters. If the mileage is formed of miles and yards, multiply the miles component by 1760 (or the helper `Geofurlong.YARDS_IN_MILE` constant) or use the helper `gf.build_total_yards` (or its identical shorter equivalent `gf.ty`) to create the total yards value.
+To establish the position of the railway at a specific mileage on an ELR, use the `at` method. This method takes an `elr` and `total_yards` values as parameters. If the mileage is formed of miles and yards, multiply the miles component by 1760 (or the helper `Geofurlong.YARDS_IN_MILE` constant) or use the helper `gf.build_total_yards` (or its identical shorter equivalent `gf.ty`) to create the total yards value.
 
 The `at` method takes an optional boolean parameter `lon_lat` which defaults to `False`, meaning that the position is returned as point based on the Ordnance Survey Easting / Northing planar system, in metres. If the `lon_lat` parameter is set to `True`, the geographic position is returned as Longitude / Latitude, in decimal degrees.
 
@@ -55,7 +55,7 @@ taunton.x, taunton.y  # (-3.103234160294033, 51.02334128880169)
 
 ## Points along an ELR between mileages
 
-The `between` method returns a Shapely [LineString](https://shapely.readthedocs.io/en/stable/reference/shapely.LineString.html#shapely.LineString) for a given mileage range on an ELR. As per the `at` method, the mileages are specified as a total yardage integer.
+The `between` method returns a Shapely [LineString](https://shapely.readthedocs.io/en/stable/reference/shapely.LineString.html#shapely.LineString) for a given mileage range on an ELR. As per the `at` method, the mileages are specified as total yardage integers.
 
 The example below shows the geographic co-ordinates around Crawley station on ELR TBH1 between mileages 30 miles 900 yards and 30 miles 1300 yards.
 
