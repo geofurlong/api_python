@@ -4,7 +4,7 @@
 
 A Python API library to interact with the GeoFurlong production database offering facilities to compute the position of a point or section of track on Network Rail railway lines in Britain. The position can be returned using Ordnance Survey (Easting / Northing) or geographic (Latitude / Longitude) systems, defined by [Engineer's Line Reference](https://en.wikipedia.org/wiki/Engineer%27s_Line_Reference) (ELR) and mileage.
 
-See the [GitHub](https://www.github.com/geofurlong/) repository on how the underlying production database is built, and the [GeoFurlong web site](https://www.geofurlong.com/) for comprehensive tabular and mapping outputs using the database.
+The [GeoFurlong](https://www.geofurlong.com/) web site contains comprehensive tabular and mapping outputs using the database for all Network Rail lines in Britain. See the [GitHub](https://www.github.com/geofurlong/builder) repository for the source code used to build the underlying production database.
 
 ## Quick Start
 
@@ -194,25 +194,21 @@ print(f"Measured Length:  {ltn1.measured_len_km:.3f} km")
 print(f"Grouping:         {ltn1.grouping}")
 print(f"Neighbours:       {ltn1.neighbours}")
 print(f"TRACKmap book(s): {ltn1.trackmaps}")
-```
 
-Outputs:
-
-```bash
-ELR:              LTN1
-Route:            Great Eastern Main Line (GEML)
-Section:          London Liverpool Street to Trowse Lower Jn
-Remarks:          
-Metric:           False
-Reported Start:   -67 (express as total yards)
-Reported End:     200412 (express as total yards)
-Reported Extents: 0M -067y - 113M 1532y
-Reported Length:  200479 yards
-Reported Length:  183.318 km
-Measured Length:  183.560 km
-Grouping:         ['LTN1', 'LTN2']
-Neighbours:       ['BDM', 'BFC', 'BGK', 'BRA', 'CCH', 'CDY', 'CNS', 'COC', 'CST', 'DWW2', 'ELL1', 'ESK', 'ETN', 'FGW', 'GFB', 'GRW', 'IPD', 'IUP', 'LTN2', 'LVS', 'MAH', 'NTE', 'ROU', 'SDC', 'SSV', 'SUD', 'TAH2', 'TFC', 'TRL2', 'XRC', 'XRE']
-TRACKmap book(s): [('2', 'Eastern'), ('3', 'Western & Wales'), ('5', 'Southern & TfL')]
+# ELR:              LTN1
+# Route:            Great Eastern Main Line (GEML)
+# Section:          London Liverpool Street to Trowse Lower Jn
+# Remarks:          
+# Metric:           False
+# Reported Start:   -67 (express as total yards)
+# Reported End:     200412 (express as total yards)
+# Reported Extents: 0M -067y - 113M 1532y
+# Reported Length:  200479 yards
+# Reported Length:  183.318 km
+# Measured Length:  183.560 km
+# Grouping:         ['LTN1', 'LTN2']
+# Neighbours:       ['BDM', 'BFC', 'BGK', 'BRA', 'CCH', 'CDY', 'CNS', 'COC', 'CST', 'DWW2', 'ELL1', 'ESK', 'ETN', 'FGW', 'GFB', 'GRW', 'IPD', 'IUP', 'LTN2', 'LVS', 'MAH', 'NTE', 'ROU', 'SDC', 'SSV', 'SUD', 'TAH2', 'TFC', 'TRL2', 'XRC', 'XRE']
+# TRACKmap book(s): [('2', 'Eastern'), ('3', 'Western & Wales'), ('5', 'Southern & TfL')]
 ```
 
 ### Accuracy
