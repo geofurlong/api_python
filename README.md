@@ -2,7 +2,7 @@
 
 ## Introduction
 
-A Python API library to interact with the GeoFurlong production database offering facilities to compute the position of a point or section of track on Network Rail railway lines in Britain. The position can be returned using Ordnance Survey (Easting / Northing) or geographic (Latitude / Longitude) systems, defined by [Engineer's Line Reference](https://en.wikipedia.org/wiki/Engineer%27s_Line_Reference) (ELR) and mileage.
+A Python API library to interact with the GeoFurlong production database offering facilities to compute the position of a point or section of track on Network Rail railway lines in Britain. The position can be returned in Ordnance Survey (Easting / Northing) or geographic (Latitude / Longitude) systems, defined by [Engineer's Line Reference](https://en.wikipedia.org/wiki/Engineer%27s_Line_Reference) (ELR) and mileage.
 
 The [GeoFurlong](https://www.geofurlong.com/) web site contains comprehensive tabular and mapping outputs using the database for all Network Rail lines in Britain. See the [GitHub](https://www.github.com/geofurlong/builder) repository for the source code used to build the underlying production database.
 
@@ -28,7 +28,7 @@ This example assumes `geofurlong.py` is in the same directory as this script. If
 
 ## Point on an ELR at a mileage
 
-To establish the position of the railway at a specific mileage on an ELR, use the `at` method. This method takes an `elr` and `total_yards` values as parameters. If the mileage is formed of miles and yards, multiply the miles component by 1760 (or the helper `Geofurlong.YARDS_IN_MILE` constant) or use the helper `gf.build_total_yards` (or its identical shorter equivalent `gf.ty`) to create the total yards value.
+To establish the position of the railway at a specific mileage on an ELR, use the `at` method. This method takes `elr` and `total_yards` values as parameters. If the mileage is formed of miles and yards, multiply the miles component by 1760 (or the helper `Geofurlong.YARDS_IN_MILE` constant) or use the helper `gf.build_total_yards` (or its identical shorter equivalent `gf.ty`) to create the total yards value.
 
 The `at` method takes an optional boolean parameter `lon_lat` which defaults to `False`, meaning that the position is returned as point based on the Ordnance Survey Easting / Northing planar system, in metres. If the `lon_lat` parameter is set to `True`, the geographic position is returned as Longitude / Latitude, in decimal degrees.
 
@@ -170,7 +170,7 @@ Satellite map background
 
 ![Wolverhampton_satellite](images/wolverhampton_satellite.png)
 
-### Attribute Methods
+### Non-geospatial attributes
 
 A number of helper methods and properties are available within the library which are not directly related to computation of positional co-ordinates. These are included as standalone example scripts in this repository, with some examples shown below. Some of the example scripts require the installation of additional libraries, e.g. `geopandas` and `folium`.
 
