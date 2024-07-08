@@ -34,7 +34,7 @@ The `at` method takes an optional boolean parameter `lon_lat` which defaults to 
 
 The `at` method returns a Shapely [Point](https://shapely.readthedocs.io/en/stable/reference/shapely.Point.html#shapely.Point) type. For planar co-ordinates, the `Point`'s `x` and `y` properties represent the Easting and Northing value respectively. For geographic co-ordinates, the `x` and `y` values represent the Longitude and Latitude values respectively.
 
-The example below shows the co-ordinates at Taunton station on ELR MLN1 at mileage 163 miles 264 yards.
+The example below shows the co-ordinates at Taunton station on the Great Western Main Line (ELR [MLN1](https://www.geofurlong.com/elr/mln1/)) at mileage 163 miles 264 yards.
 
 ```python
 from geofurlong import Geofurlong
@@ -57,7 +57,7 @@ taunton.x, taunton.y  # (-3.103234160294033, 51.02334128880169)
 
 The `between` method returns a Shapely [LineString](https://shapely.readthedocs.io/en/stable/reference/shapely.LineString.html#shapely.LineString) for a given mileage range on an ELR. As per the `at` method, the mileages are specified as total yardage integers.
 
-The example below shows the geographic co-ordinates around Crawley station on ELR TBH1 between mileages 30 miles 900 yards and 30 miles 1300 yards.
+The example below shows the geographic co-ordinates around Crawley station on the Three Bridges Jn to Arundel Jn North line (ELR [TBH1](https://www.geofurlong.com/elr/tbh1/)) between mileages 30 miles 900 yards and 30 miles 1300 yards.
 
 ```python
 
@@ -78,7 +78,7 @@ list(crawley.coords)
 
 ![Crawley](images/crawley.png)
 
-The `at` and `between` methods co-ordinates can be converted to [GeoJSON](https://en.wikipedia.org/wiki/GeoJSON) format for interfacing with external systems and libraries. The `to_geojson(dalton)` output string below was pasted directly into the [geojson.io](https://geojson.io/) website to visualise a section of the Cumbrian Coast line (ELR CBC1) between 32 miles 880 yards and 32 miles 1540 yards, near Dalton-in-Furness.
+The `at` and `between` methods co-ordinates can be converted to [GeoJSON](https://en.wikipedia.org/wiki/GeoJSON) format for interfacing with external systems and libraries. The `to_geojson(dalton)` output string below was pasted directly into the [geojson.io](https://geojson.io/) website to visualise a section of the Cumbrian Coast line (ELR [CBC1](https://www.geofurlong.com/elr/cbc1/)) between 32 miles 880 yards and 32 miles 1540 yards, near Dalton-in-Furness.
 
 ```python
 from geofurlong import Geofurlong
@@ -99,7 +99,7 @@ to_geojson(gf.between("CBC1", gf.ty(32, 880), gf.ty(32, 1540), lon_lat=True))
 
 To establish regular points along an ELR at a defined interval (in yards), use the `traverse` method. This takes an `elr` and `interval` as parameters and returns a Python [iterator](https://wiki.python.org/moin/Iterator). This iterator provides a `total_yards` value at the requested interval (plus the ELR's start and end points) to allow further usage, normally to compute the co-ordinates.
 
-The example below shows the `traverse` method being applied to ELR SUB2 (Edinburgh South Suburban Line) to provide the longitude / latitude geographic co-ordinates at 880 yard intervals.
+The example below shows the `traverse` method being applied to Edinburgh South Suburban Line (ELR [SUB2](https://www.geofurlong.com/elr/sub2/)) to provide the longitude / latitude geographic co-ordinates at 880 yard intervals.
 
 ```python
 from geofurlong import Geofurlong
@@ -108,11 +108,13 @@ from shapely import to_geojson
 
 gf = Geofurlong()
 
-sub = "SUB2"
 points = []
-for ty in gf.traverse(sub, 880):
+for ty in gf.traverse("SUB2", 880):
     geo = gf.at(sub, ty, lon_lat=True)
     points.append((geo.x, geo.y))
+
+# Alternatively, use a one-line construct to build the points using list comprehension.
+# points = [(geo.x, geo.y) for ty in gf.traverse("SUB2", 880) for geo in [gf.at("SUB2", ty, lon_lat=True)]]
 
 sub_points = MultiPoint(points)
 
@@ -127,9 +129,9 @@ to_geojson(sub_points)
 
 ## Mapping
 
-The library does not include any facility to generate *maps*, as there are many powerful solutions available to Python users, e.g. [Folium](https://python-visualization.github.io/folium/latest/).
+The library does not include any facility to generate *maps*, as there are many powerful solutions available to Python users, e.g. [Folium](https://python-visualization.github.io/folium/latest/). Please respect the copyright and usage conditions of use of the background map tile providers.
 
-Using the `Folium` library, background mapping can be displayed in an interactive map or saved as a standalone HTML file. The examples below shows a section of track on ELR RBS2 between 12 miles 600 yards and 12 miles 1350 yards, south-east of Wolverhampton station.
+Using the `Folium` library, background mapping can be displayed in an interactive map or saved as a standalone HTML file. The examples below shows a section of track on the Birmingham New Street to Bushbury Jn line (ELR [RBS2](https://www.geofurlong.com/elr/rbs2/)) between 12 miles 600 yards and 12 miles 1350 yards, south-east of Wolverhampton station.
 
 ```python
 from geofurlong import Geofurlong
@@ -142,13 +144,26 @@ wolverhampton = gf.between("RBS2", gf.ty(12, 600), gf.ty(12, 1350), lon_lat=True
 # Folium requires the co-ordinates to be in the format (latitude, longitude).
 coordinates = [(y, x) for x, y in wolverhampton.coords]
 
-# Create map with standard background tiles.
+# Create map with OpenStreetMap background tiles.
 standard_map = folium.Map()
 folium.PolyLine(coordinates).add_to(standard_map)
 standard_map.fit_bounds(standard_map.get_bounds())
 standard_map.save("wolverhampton_standard.html")
+```
 
-# Create map with satellite background tiles.
+![Wolverhampton_standard](images/wolverhampton_standard.png)
+
+Alternatively, the railway section can be mapped with satellite background tiles.
+
+```python
+from geofurlong import Geofurlong
+import folium
+
+gf = Geofurlong()
+
+wolverhampton = gf.between("RBS2", gf.ty(12, 600), gf.ty(12, 1350), lon_lat=True)
+coordinates = [(y, x) for x, y in wolverhampton.coords]
+
 satellite_map = folium.Map()
 folium.TileLayer(
     tiles="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
@@ -162,17 +177,11 @@ satellite_map.fit_bounds(satellite_map.get_bounds())
 satellite_map.save("wolverhampton_satellite.html")
 ```
 
-Standard map background
-
-![Wolverhampton_standard](images/wolverhampton_standard.png)
-
-Satellite map background
-
 ![Wolverhampton_satellite](images/wolverhampton_satellite.png)
 
 ### Non-geospatial attributes
 
-A number of helper methods and properties are available within the library which are not directly related to computation of positional co-ordinates. These are included as standalone example scripts in this repository, with some examples shown below. Some of the example scripts require the installation of additional libraries, e.g. `geopandas` and `folium`.
+A number of helper methods and properties are available within the library which are not directly related to computation of positional co-ordinates. These are included as standalone example scripts in this repository, with some examples shown below for the Great Eastern Main Line (ELR [LTN1](https://www.geofurlong.com/elr/ltn1/)). Some of the example scripts within this repository require the installation of additional libraries, notably `geopandas` and `folium` for import / export and mapping respectfully.
 
 ```python
 from geofurlong import Geofurlong
@@ -247,7 +256,7 @@ gf.elr("EGM1").remarks
 
 This library can compute the co-ordinates of railway points at many thousand iterations per second. It utilises robust high-performance libraries which are written in C, thus the normal performance overheads associated with the dynamic typing nature of Python are reduced. Some basic performance benchmarks are recorded in this [example](lib/example_98_performance.py).
 
-For higher-performing geocoding requirements, see the [GeoFurlong builder](https://github.com/geofurlong/builder) repository on GitHub which is written in Go.
+For higher-performing geocoding requirements, see the GeoFurlong [builder](https://github.com/geofurlong/builder) repository on GitHub which is written in Go.
 
 ### Testing
 
@@ -262,7 +271,7 @@ GeoFurlong is built upon a framework of open-source software applications and li
 - [numpy](https://numpy.org/) scientific computing library.
 - [Python](https://www.python.org/) programming language.
 - [Shapely](https://shapely.readthedocs.io/en/stable/index.html) planar geometry library (which utilises the [GEOS](https://libgeos.org/) library).
-- [pyproj](https://pyproj4.github.io/pyproj/stable/) cartographic projections and coordinate transformations library.
+- [pyproj](https://pyproj4.github.io/pyproj/stable/) cartographic projection and co-ordinate transformation library.
 
 ### Disclaimer
 
