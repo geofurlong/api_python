@@ -28,7 +28,9 @@ This example assumes `geofurlong.py` is in the same directory as this script. If
 
 ## Point on an ELR at a mileage
 
-To establish the position of the railway at a specific mileage on an ELR, use the `at` method. This method takes `elr` and `total_yards` values as parameters. If the mileage is formed of miles and yards, multiply the miles component by 1760 (or the helper `Geofurlong.YARDS_IN_MILE` constant) or use the helper `gf.build_total_yards` (or its identical shorter equivalent `gf.ty`) to create the total yards value.
+To establish the position of the railway at a specific mileage on an ELR, use the `at` method. This method takes `elr` and `total_yards` values as parameters.
+
+To set the `total_yards` value, multiply the `miles` value by 1,760 and add the `yards` value. The `Geofurlong.YARDS_IN_MILE` constant value can be used in lieu of hard-coding 1,760. Alternatively, the helper `gf.build_total_yards` (or its identical concise equivalent `gf.ty`) are available to compute the `total_yards` value.
 
 The `at` method takes an optional boolean parameter `lon_lat` which defaults to `False`, meaning that the position is returned as point based on the Ordnance Survey Easting / Northing planar system, in metres. If the `lon_lat` parameter is set to `True`, the geographic position is returned as Longitude / Latitude, in decimal degrees.
 
@@ -113,7 +115,7 @@ for ty in gf.traverse("SUB2", 880):
     geo = gf.at(sub, ty, lon_lat=True)
     points.append((geo.x, geo.y))
 
-# Alternatively, use a one-line construct to build the points using list comprehension.
+# Alternatively, use a one-line construct to build the points via list comprehension.
 # points = [(geo.x, geo.y) for ty in gf.traverse("SUB2", 880) for geo in [gf.at("SUB2", ty, lon_lat=True)]]
 
 sub_points = MultiPoint(points)
