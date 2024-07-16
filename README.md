@@ -80,7 +80,7 @@ list(crawley.coords)
 
 ![Crawley](images/crawley.png)
 
-The `at` and `between` methods co-ordinates can be converted to [GeoJSON](https://en.wikipedia.org/wiki/GeoJSON) format for interfacing with external systems and libraries. The `to_geojson(dalton)` output string below was pasted directly into the [geojson.io](https://geojson.io/) website to visualise a section of the Cumbrian Coast line (ELR [CBC1](https://www.geofurlong.com/elr/cbc1/)) between 32 miles 880 yards and 32 miles 1540 yards, near Dalton-in-Furness.
+The co-ordinates returned by the `at` and `between` methods can be converted to [GeoJSON](https://en.wikipedia.org/wiki/GeoJSON) format for interfacing with external systems and libraries. The `to_geojson(...)` output string below was pasted directly into the [geojson.io](https://geojson.io/) website to visualise a section of the Cumbrian Coast line (ELR [CBC1](https://www.geofurlong.com/elr/cbc1/)) between 32 miles 880 yards and 32 miles 1540 yards, near Dalton-in-Furness.
 
 ```python
 from geofurlong import Geofurlong
@@ -101,7 +101,7 @@ to_geojson(gf.between("CBC1", gf.ty(32, 880), gf.ty(32, 1540), lon_lat=True))
 
 To establish regular points along an ELR at a defined interval (in yards), use the `traverse` method. This takes an `elr` and `interval` as parameters and returns a Python [iterator](https://wiki.python.org/moin/Iterator). This iterator provides a `total_yards` value at the requested interval (plus the ELR's start and end points) to allow further usage, normally to compute the co-ordinates.
 
-The example below shows the `traverse` method being applied to Edinburgh South Suburban Line (ELR [SUB2](https://www.geofurlong.com/elr/sub2/)) to provide the longitude / latitude geographic co-ordinates at 880 yard intervals.
+The example below shows the `traverse` method being applied to the Edinburgh South Suburban Line (ELR [SUB2](https://www.geofurlong.com/elr/sub2/)) to obtain the longitude / latitude geographic co-ordinates at 880 yard intervals.
 
 ```python
 from geofurlong import Geofurlong
@@ -251,12 +251,12 @@ gf.elr("EGM1").remarks
 
 ### To Do
 
-- Include linear accuracy reporting for `at` and `between` methods.
-- Add facility for `traverse` method to accept an interval in metres for metric ELRs.
+- Include linear accuracy reporting for the `at` and `between` methods.
+- Add facility for the `traverse` method to accept an interval in metres for metric ELRs.
 
 ### Performance
 
-This library can compute the co-ordinates of railway points at many thousand iterations per second. It utilises robust high-performance libraries, written in C, thus the performance overheads normally associated with the dynamic typing architecture of Python are reduced. Some basic performance benchmarks are recorded in this [example](lib/example_98_performance.py).
+This library can compute the co-ordinates of railway points at many thousand iterations per second. It utilises robust high-performance libraries written in C, thus the performance overheads normally associated with the dynamic typing architecture of Python are reduced. Some basic performance benchmarks are recorded in this [example](lib/example_98_performance.py).
 
 For higher-performing geocoding requirements, see the GeoFurlong [builder](https://github.com/geofurlong/builder) repository on GitHub which is written in Go.
 
