@@ -20,8 +20,8 @@ gf = Geofurlong()
 print("GeoFurlong Python API version", gf.api_version)
 # GeoFurlong Python API version 0.1.0
 
-print("GeoFurlong database version  ", gf.db_version)
-# GeoFurlong database version   6.8.1
+print("GeoFurlong database version", gf.db_version)
+# GeoFurlong database version 6.8.1
 ```
 
 This example assumes `geofurlong.py` is in the same directory as this script. If this is not the case, specify the path to the module file or modify the Python search path. Similarly, the default constructor for `Geofurlong` assumes `geofurlong.sqlite` is in the same directory as the running script. If this is not the case, specify the path to the database file, e.g. `gf = Geofurlong('path/to/geofurlong.sqlite')`.
