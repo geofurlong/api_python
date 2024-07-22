@@ -32,9 +32,9 @@ To establish the position of the railway at a specific mileage on an ELR, use th
 
 To set the `total_yards` value, multiply the `miles` value by 1,760 and add the `yards` value. The `Geofurlong.YARDS_IN_MILE` constant value can be used in lieu of hard-coding 1,760. Alternatively, the helper `gf.build_total_yards` (or its identical concise equivalent `gf.ty`) are available to compute the `total_yards` value.
 
-The `at` method takes an optional boolean parameter `lon_lat` which defaults to `False`, meaning that the position is returned as point based on the Ordnance Survey Easting / Northing planar system, in metres. If the `lon_lat` parameter is set to `True`, the geographic position is returned as Longitude / Latitude, in decimal degrees.
+The `at` method takes an optional boolean parameter `lon_lat` which defaults to `False`, meaning that the position is returned as point based on the Ordnance Survey Easting / Northing projected system, in metres. If the `lon_lat` parameter is set to `True`, the geographic position is returned as Longitude / Latitude, in decimal degrees.
 
-The `at` method returns a Shapely [Point](https://shapely.readthedocs.io/en/stable/reference/shapely.Point.html#shapely.Point) type. For planar co-ordinates, the `Point`'s `x` and `y` properties represent the Easting and Northing value respectively. For geographic co-ordinates, the `x` and `y` values represent the Longitude and Latitude values respectively.
+The `at` method returns a Shapely [Point](https://shapely.readthedocs.io/en/stable/reference/shapely.Point.html#shapely.Point) type. For projected co-ordinates, the `Point`'s `x` and `y` properties represent the Easting and Northing value respectively. For geographic co-ordinates, the `x` and `y` values represent the Longitude and Latitude values respectively.
 
 The example below shows the co-ordinates at Taunton station on the Great Western Main Line (ELR [MLN1](https://www.geofurlong.com/elr/mln1/)) at mileage 163 miles 264 yards.
 
