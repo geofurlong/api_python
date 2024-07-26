@@ -6,6 +6,8 @@ A Python API library to interact with the GeoFurlong production database offerin
 
 The [GeoFurlong](https://www.geofurlong.com/) web site contains comprehensive tabular and mapping outputs using the database for all Network Rail lines in Britain. See the [GitHub](https://www.github.com/geofurlong/builder) repository for the source code used to build the underlying production database.
 
+>⚠️ The GeoFurlong library output must not be used for safety-critical decisions, nor relied upon as the primary geographic data source in production environments.
+
 ## Quick Start
 
 1. Install [Python]((https://www.python.org/)). The library has been developed in environments using Python versions 3.11 and 3.12.
@@ -285,4 +287,4 @@ The library source code and database are released under the permissive [MIT Lice
 
 ### Author
 
-Alan Morrison *CEng MICE Eur Ing FPWI*
+Alan Morrison
